@@ -135,8 +135,8 @@ const WorkoutList = () => {
                       </Button>
                     </div>
                   </div> : <div>
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-base font-bold text-slate-950">
+                    <div className="flex items-start justify-between mb-1.5">
+                      <h3 className="text-sm font-bold text-slate-950">
                         {machine.name}
                       </h3>
                       <div className="flex gap-1">

@@ -19,7 +19,7 @@ const VideoPlayer = () => {
       {/* Video Element */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-contain"
         src="/door-video.mp4"
         playsInline
         muted={false}

@@ -156,7 +156,7 @@ const WorkoutList = () => {
                     
                     <div className="mb-2">
                       <p className="text-xs mb-1 text-slate-950">
-                        generally used for:
+                        Generally used for:
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {machine.muscles.map((muscle, idx) => <span key={idx} className="px-2 py-0.5 bg-primary/20 rounded-full text-xs text-slate-950">

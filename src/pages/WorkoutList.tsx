@@ -121,7 +121,7 @@ const WorkoutList = () => {
               <Button onClick={() => navigate('/')} size="sm">
                 Upload First Machine
               </Button>
-            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#554d3e]">
+            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-slate-50">
                 {editingId === machine.id ? <div className="space-y-2">
                     <Input value={editForm.name} onChange={e => setEditForm({
                   ...editForm,
@@ -161,11 +161,11 @@ const WorkoutList = () => {
                     </div>
                     
                     <div className="mb-2">
-                      <p className="text-xs text-muted-foreground mb-1">
+                      <p className="text-xs mb-1 text-slate-950">
                         Target Muscles:
                       </p>
                       <div className="flex flex-wrap gap-1">
-                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-2 py-0.5 bg-primary/20 text-foreground rounded-full text-xs">
+                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-2 py-0.5 bg-primary/20 rounded-full text-xs text-slate-950">
                             {muscle}
                           </span>)}
                       </div>

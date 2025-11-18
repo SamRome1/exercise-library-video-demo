@@ -182,7 +182,7 @@ const WorkoutList = () => {
                           [machine.id]: e.target.value
                         })}
                         placeholder="Enter your workout goal..."
-                        className="text-sm h-9"
+                        className="text-sm h-9 bg-transparent border-black"
                       />
                       <Button 
                         className="mt-2 w-full"

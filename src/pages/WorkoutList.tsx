@@ -97,10 +97,7 @@ const WorkoutList = () => {
     setVideoEnded(false);
     setExercisesReady(null);
     
-    // Play video
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
+    // Video will autoplay when mounted
 
     // Generate exercises in parallel
     try {
@@ -176,8 +173,10 @@ const WorkoutList = () => {
             src="/gainz-video.mp4"
             className="w-full h-full object-cover"
             onEnded={handleVideoEnd}
+            autoPlay
             playsInline
             muted
+            onError={(e) => console.error('Video error:', e)}
           />
         </div>
       )}

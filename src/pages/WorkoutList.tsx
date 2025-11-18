@@ -104,7 +104,7 @@ const WorkoutList = () => {
               </h1>
             </div>
 
-            <div className="space-y-2 max-w-xs ml-[6%] -mt-10">
+            <div className="space-y-2 max-w-[280px] ml-[6%] -mt-10">
           {machines.length === 0 ? <Card className="p-6 text-center bg-background/90 backdrop-blur-sm">
               <p className="text-sm text-muted-foreground mb-3">
                 No machines added yet. Upload a machine photo to get started!
@@ -112,7 +112,7 @@ const WorkoutList = () => {
               <Button onClick={() => navigate('/')} size="sm">
                 Upload First Machine
               </Button>
-            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#fef7ea]">
+            </Card> : machines.map(machine => <Card key={machine.id} className="p-2 backdrop-blur-sm bg-[#fef7ea]">
                 {editingId === machine.id ? <div className="space-y-2">
                     <Input value={editForm.name} onChange={e => setEditForm({
                   ...editForm,
@@ -140,43 +140,43 @@ const WorkoutList = () => {
                         {machine.name}
                       </h3>
                       <div className="flex gap-1">
-                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-1 h-7 px-2 bg-amber-300 hover:bg-amber-200 text-slate-950">
-                          <Pencil className="w-3 h-3" />
-                          <span className="text-xs">Edit</span>
+                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-1 h-6 px-1.5 bg-amber-300 hover:bg-amber-200 text-slate-950">
+                          <Pencil className="w-2.5 h-2.5" />
+                          <span className="text-[10px]">Edit</span>
                         </Button>
-                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-1 h-7 px-2 bg-red-600 hover:bg-red-500 text-slate-950">
-                          <Trash2 className="w-3 h-3" />
-                          <span className="text-xs">Delete</span>
+                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-1 h-6 px-1.5 bg-red-600 hover:bg-red-500 text-slate-950">
+                          <Trash2 className="w-2.5 h-2.5" />
+                          <span className="text-[10px]">Delete</span>
                         </Button>
                       </div>
                     </div>
                     
-                    <div className="mb-2">
-                      <p className="text-xs mb-1 text-slate-950">
+                    <div className="mb-1.5">
+                      <p className="text-[10px] mb-0.5 text-slate-950">
                         Generally used for:
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-2 py-0.5 bg-primary/20 rounded-full text-xs text-slate-950">
+                      <div className="flex flex-wrap gap-0.5">
+                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-1.5 py-0.5 bg-primary/20 rounded-full text-[10px] text-slate-950">
                             {muscle}
                           </span>)}
                       </div>
                     </div>
 
-                    {machine.notes && <div className="mt-2 p-2 bg-muted/50 rounded-lg">
-                        <p className="text-xs text-muted-foreground">
+                    {machine.notes && <div className="mt-1.5 p-1.5 bg-muted/50 rounded-lg">
+                        <p className="text-[10px] text-muted-foreground">
                           {machine.notes}
                         </p>
                       </div>}
 
-                    <div className="mt-3">
-                      <label className="text-xs text-slate-950 mb-1 block">
+                    <div className="mt-2">
+                      <label className="text-[10px] text-slate-950 mb-0.5 block">
                         What do you want to work out?
                       </label>
                       <Input value={workoutGoals[machine.id] || ''} onChange={e => setWorkoutGoals({
                     ...workoutGoals,
                     [machine.id]: e.target.value
-                  })} placeholder="Enter your workout goal..." className="text-sm h-9 bg-transparent border-black text-black" />
-                      <Button className="mt-2 w-full" size="sm">
+                  })} placeholder="Enter your workout goal..." className="text-xs h-7 bg-transparent border-black text-black" />
+                      <Button className="mt-1.5 w-full text-[10px] h-6" size="sm">
                         Gainz
                       </Button>
                     </div>

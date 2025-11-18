@@ -112,7 +112,7 @@ const WorkoutList = () => {
               <Button onClick={() => navigate('/')} size="sm">
                 Upload First Machine
               </Button>
-            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#554e40]">
+            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#fef7ea]">
                 {editingId === machine.id ? <div className="space-y-2">
                     <Input value={editForm.name} onChange={e => setEditForm({
                   ...editForm,

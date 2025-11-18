@@ -102,7 +102,7 @@ const WorkoutList = () => {
 
             <div className="text-left mb-8 mt-24 ml-[6%]">
               <h1 className="text-3xl font-bold text-black mb-2">
-                My Workout Machines
+                What this Machine can do
               </h1>
             </div>
 

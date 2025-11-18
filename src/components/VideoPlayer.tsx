@@ -22,7 +22,7 @@ const VideoPlayer = () => {
         className="absolute inset-0 w-full h-full object-contain"
         src="/door-video.mp4"
         playsInline
-        muted={false}
+        muted
       />
 
       {/* Interactive Overlay */}
@@ -35,12 +35,12 @@ const VideoPlayer = () => {
             : "opacity-0 pointer-events-none"
         )}
       >
-        <div className="text-center space-y-6 px-6 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
+        <div className="text-center space-y-3 px-6 animate-fade-in" style={{ marginTop: '8vh' }}>
+          <h1 className="text-lg md:text-xl font-medium text-foreground tracking-wide">
             Click on the door to open it
           </h1>
           <div className="flex justify-center">
-            <div className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-pulse" />
           </div>
         </div>
       </div>

@@ -87,8 +87,11 @@ const WorkoutList = () => {
 
   return (
     <div 
-      className="min-h-screen bg-cover bg-center relative"
-      style={{ backgroundImage: `url(${trainerBg})` }}
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+      style={{ 
+        backgroundImage: `url(${trainerBg})`,
+        backgroundSize: 'contain'
+      }}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/70" />

@@ -108,9 +108,6 @@ const WorkoutList = () => {
               <h1 className="text-4xl font-bold text-foreground mb-2">
                 My Workout Machines
               </h1>
-              <p className="text-muted-foreground">
-                Track and manage your gym equipment
-              </p>
             </div>
 
             <div className="space-y-2 max-w-xs ml-[6%]">

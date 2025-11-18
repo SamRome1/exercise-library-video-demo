@@ -53,12 +53,12 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
     };
     reader.readAsDataURL(file);
     onUpload(file);
-    toast.success("Fridge image uploaded!");
+    toast.success("Machine photo uploaded!");
   };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none animate-fade-in">
-      <div className="w-full max-w-md mx-6 pointer-events-auto">
+      <div className="w-full max-w-xs mx-6 pointer-events-auto">
         <div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -78,12 +78,12 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
           />
 
-          <div className="p-12 text-center space-y-6">
+          <div className="p-8 text-center space-y-4">
             {preview ? (
               <div className="space-y-4">
                 <img
                   src={preview}
-                  alt="Fridge preview"
+                  alt="Machine preview"
                   className="w-full h-48 object-cover rounded-lg"
                 />
                 <p className="text-sm text-muted-foreground">
@@ -95,21 +95,21 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
                 <div className="flex justify-center">
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
-                    <div className="relative bg-primary/10 p-6 rounded-full">
-                      <Upload className="w-12 h-12 text-foreground" />
+                    <div className="relative bg-primary/10 p-4 rounded-full">
+                      <Upload className="w-8 h-8 text-foreground" />
                     </div>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Upload your fridge photo
+                  <h3 className="text-lg font-semibold text-foreground">
+                    Upload machine photo
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     Drag and drop or click to browse
                   </p>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                  <ImageIcon className="w-4 h-4" />
+                  <ImageIcon className="w-3 h-3" />
                   <span>JPG, PNG, WEBP up to 20MB</span>
                 </div>
               </>

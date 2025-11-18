@@ -119,7 +119,7 @@ const WorkoutList = () => {
           </Button>
         </div>
 
-        <div className="text-center mb-8">
+        <div className="text-left ml-auto mr-12 max-w-md mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-2">
             My Workout Machines
           </h1>

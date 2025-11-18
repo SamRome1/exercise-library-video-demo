@@ -71,7 +71,7 @@ const Auth = () => {
   return (
     <div 
       className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center px-4"
-      style={{ backgroundImage: `url(${gymClosed})` }}
+      style={{ backgroundImage: `url(${gymClosed})`, backgroundSize: 'contain' }}
     >
       <Card className="w-full max-w-md p-8 backdrop-blur-sm bg-background/95">
         <div className="text-center mb-6">

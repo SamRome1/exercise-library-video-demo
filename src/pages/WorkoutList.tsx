@@ -184,6 +184,12 @@ const WorkoutList = () => {
                         placeholder="Enter your workout goal..."
                         className="text-sm h-9"
                       />
+                      <Button 
+                        className="mt-2 w-full"
+                        size="sm"
+                      >
+                        Gainz
+                      </Button>
                     </div>
                   </div>}
               </Card>)}

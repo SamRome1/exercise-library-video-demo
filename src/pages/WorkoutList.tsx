@@ -113,66 +113,66 @@ const WorkoutList = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
-          {machines.length === 0 ? <Card className="p-12 text-center bg-background/90 backdrop-blur-sm">
-              <p className="text-muted-foreground mb-4">
+            <div className="space-y-2">
+          {machines.length === 0 ? <Card className="p-6 text-center bg-background/90 backdrop-blur-sm">
+              <p className="text-sm text-muted-foreground mb-3">
                 No machines added yet. Upload a machine photo to get started!
               </p>
-              <Button onClick={() => navigate('/')}>
+              <Button onClick={() => navigate('/')} size="sm">
                 Upload First Machine
               </Button>
-            </Card> : machines.map(machine => <Card key={machine.id} className="p-6 backdrop-blur-sm bg-[#554d3e]">
-                {editingId === machine.id ? <div className="space-y-4">
+            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#554d3e]">
+                {editingId === machine.id ? <div className="space-y-2">
                     <Input value={editForm.name} onChange={e => setEditForm({
                   ...editForm,
                   name: e.target.value
-                })} placeholder="Machine name" className="text-lg font-semibold" />
+                })} placeholder="Machine name" className="text-sm font-semibold h-8" />
                     <Input value={editForm.muscles} onChange={e => setEditForm({
                   ...editForm,
                   muscles: e.target.value
-                })} placeholder="Muscles (comma separated)" />
+                })} placeholder="Muscles (comma separated)" className="text-xs h-8" />
                     <Textarea value={editForm.notes} onChange={e => setEditForm({
                   ...editForm,
                   notes: e.target.value
-                })} placeholder="Notes (optional)" rows={3} />
-                    <div className="flex gap-2">
-                      <Button onClick={() => handleSave(machine.id)} size="sm">
+                })} placeholder="Notes (optional)" rows={2} className="text-xs" />
+                    <div className="flex gap-1">
+                      <Button onClick={() => handleSave(machine.id)} size="sm" className="h-7 text-xs">
                         Save
                       </Button>
-                      <Button onClick={() => setEditingId(null)} variant="outline" size="sm">
+                      <Button onClick={() => setEditingId(null)} variant="outline" size="sm" className="h-7 text-xs">
                         Cancel
                       </Button>
                     </div>
                   </div> : <div>
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-bold text-slate-950">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-base font-bold text-slate-950">
                         {machine.name}
                       </h3>
-                      <div className="flex gap-2">
-                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-2">
-                          <Pencil className="w-4 h-4" />
-                          Edit
+                      <div className="flex gap-1">
+                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-1 h-7 px-2">
+                          <Pencil className="w-3 h-3" />
+                          <span className="text-xs">Edit</span>
                         </Button>
-                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-2">
-                          <Trash2 className="w-4 h-4" />
-                          Delete
+                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-1 h-7 px-2">
+                          <Trash2 className="w-3 h-3" />
+                          <span className="text-xs">Delete</span>
                         </Button>
                       </div>
                     </div>
                     
-                    <div className="mb-3">
-                      <p className="text-sm text-muted-foreground mb-1">
+                    <div className="mb-2">
+                      <p className="text-xs text-muted-foreground mb-1">
                         Target Muscles:
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-3 py-1 bg-primary/20 text-foreground rounded-full text-sm">
+                      <div className="flex flex-wrap gap-1">
+                        {machine.muscles.map((muscle, idx) => <span key={idx} className="px-2 py-0.5 bg-primary/20 text-foreground rounded-full text-xs">
                             {muscle}
                           </span>)}
                       </div>
                     </div>
 
-                    {machine.notes && <div className="mt-3 p-3 bg-muted/50 rounded-lg">
-                        <p className="text-sm text-muted-foreground">
+                    {machine.notes && <div className="mt-2 p-2 bg-muted/50 rounded-lg">
+                        <p className="text-xs text-muted-foreground">
                           {machine.notes}
                         </p>
                       </div>}

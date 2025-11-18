@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
-import trainerBg from "@/assets/trainer-background.png";
+import gymBg from "@/assets/gym-character-background.png";
 
 interface Exercise {
   name: string;
@@ -21,7 +21,7 @@ const ExerciseList = () => {
   if (!exercises || !machineName) {
     return (
       <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center" 
-           style={{ backgroundImage: `url(${trainerBg})`, backgroundSize: 'contain' }}>
+           style={{ backgroundImage: `url(${gymBg})`, backgroundSize: 'cover' }}>
         <Card className="p-6 bg-background/90 backdrop-blur-sm">
           <p className="text-muted-foreground mb-4">No exercise data found</p>
           <Button onClick={() => navigate('/workout-list')}>
@@ -34,7 +34,7 @@ const ExerciseList = () => {
 
   return (
     <div className="min-h-screen bg-cover bg-center bg-no-repeat relative" 
-         style={{ backgroundImage: `url(${trainerBg})`, backgroundSize: 'contain' }}>
+         style={{ backgroundImage: `url(${gymBg})`, backgroundSize: 'cover' }}>
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
         <div className="flex justify-between items-start">
           <div className="w-1/2"></div>

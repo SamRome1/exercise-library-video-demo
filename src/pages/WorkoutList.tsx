@@ -23,6 +23,7 @@ const WorkoutList = () => {
     muscles: "",
     notes: ""
   });
+  const [workoutGoals, setWorkoutGoals] = useState<Record<string, string>>({});
   const navigate = useNavigate();
   useEffect(() => {
     fetchMachines();
@@ -169,6 +170,21 @@ const WorkoutList = () => {
                           {machine.notes}
                         </p>
                       </div>}
+
+                    <div className="mt-3">
+                      <label className="text-xs text-slate-950 mb-1 block">
+                        What do you want to work out?
+                      </label>
+                      <Input
+                        value={workoutGoals[machine.id] || ''}
+                        onChange={(e) => setWorkoutGoals({
+                          ...workoutGoals,
+                          [machine.id]: e.target.value
+                        })}
+                        placeholder="Enter your workout goal..."
+                        className="text-sm h-9"
+                      />
+                    </div>
                   </div>}
               </Card>)}
             </div>

@@ -29,17 +29,18 @@ serve(async (req) => {
       );
     }
 
-    const prompt = `You are a professional fitness trainer. Generate exactly 6 specific exercises for the following gym machine and workout goal.
+    const prompt = `You are a professional fitness trainer. Generate exactly 2 specific exercise variations for the following gym machine and workout goal.
 
 Machine: ${machineName}
 Machine targets: ${muscles.join(', ')}
 User's workout goal: ${workoutGoal}
 
-Provide 6 exercises that:
+Provide 2 exercises that:
 1. Are specifically designed for this machine
 2. Target the user's stated workout goal
 3. Include proper form and technique tips
 4. Have appropriate sets, reps, and rest times
+5. Include a YouTube search query that would find a good tutorial video for this exact exercise
 
 Return ONLY a JSON object with this structure (no markdown, no code blocks):
 {
@@ -50,7 +51,8 @@ Return ONLY a JSON object with this structure (no markdown, no code blocks):
       "sets": "number of sets",
       "reps": "number of reps or duration",
       "rest": "rest time between sets",
-      "tips": "1-2 sentence form tip"
+      "tips": "1-2 sentence form tip",
+      "youtubeSearch": "specific search query for YouTube tutorial (e.g., 'how to bench press proper form tutorial')"
     }
   ]
 }`;

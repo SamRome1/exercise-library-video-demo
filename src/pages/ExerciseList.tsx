@@ -11,6 +11,7 @@ interface Exercise {
   reps: string;
   rest: string;
   tips: string;
+  youtubeSearch: string;
 }
 
 const ExerciseList = () => {
@@ -85,6 +86,14 @@ const ExerciseList = () => {
                   {exercise.tips}
                 </p>
               </div>
+
+              <Button
+                onClick={() => window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.youtubeSearch)}`, '_blank')}
+                className="mt-2 w-full text-xs h-7"
+                variant="secondary"
+              >
+                Watch Tutorial
+              </Button>
             </Card>
           ))}
         </div>

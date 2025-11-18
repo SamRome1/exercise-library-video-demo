@@ -98,7 +98,7 @@ const WorkoutList = () => {
               </Button>
             </div>
 
-            <div className="text-left mb-8 mt-24 ml-[22%]">
+            <div className="text-left mb-8 mt-24 ml-[23%]">
               <h1 className="text-lg font-bold text-black mb-2">
                 Machine:
               </h1>

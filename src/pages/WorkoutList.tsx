@@ -115,7 +115,7 @@ const WorkoutList = () => {
               <Button onClick={() => navigate('/')} size="sm">
                 Upload First Machine
               </Button>
-            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-slate-50">
+            </Card> : machines.map(machine => <Card key={machine.id} className="p-3 backdrop-blur-sm bg-[#554e40]">
                 {editingId === machine.id ? <div className="space-y-2">
                     <Input value={editForm.name} onChange={e => setEditForm({
                   ...editForm,
@@ -143,11 +143,11 @@ const WorkoutList = () => {
                         {machine.name}
                       </h3>
                       <div className="flex gap-1">
-                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-1 h-7 px-2">
+                        <Button onClick={() => handleEdit(machine)} variant="outline" size="sm" className="gap-1 h-7 px-2 bg-amber-300 hover:bg-amber-200 text-slate-950">
                           <Pencil className="w-3 h-3" />
                           <span className="text-xs">Edit</span>
                         </Button>
-                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-1 h-7 px-2">
+                        <Button onClick={() => handleDelete(machine.id)} variant="destructive" size="sm" className="gap-1 h-7 px-2 bg-red-600 hover:bg-red-500 text-slate-950">
                           <Trash2 className="w-3 h-3" />
                           <span className="text-xs">Delete</span>
                         </Button>
@@ -175,19 +175,11 @@ const WorkoutList = () => {
                       <label className="text-xs text-slate-950 mb-1 block">
                         What do you want to work out?
                       </label>
-                      <Input
-                        value={workoutGoals[machine.id] || ''}
-                        onChange={(e) => setWorkoutGoals({
-                          ...workoutGoals,
-                          [machine.id]: e.target.value
-                        })}
-                        placeholder="Enter your workout goal..."
-                        className="text-sm h-9 bg-transparent border-black text-black"
-                      />
-                      <Button 
-                        className="mt-2 w-full"
-                        size="sm"
-                      >
+                      <Input value={workoutGoals[machine.id] || ''} onChange={e => setWorkoutGoals({
+                    ...workoutGoals,
+                    [machine.id]: e.target.value
+                  })} placeholder="Enter your workout goal..." className="text-sm h-9 bg-transparent border-black text-black" />
+                      <Button className="mt-2 w-full" size="sm">
                         Gainz
                       </Button>
                     </div>

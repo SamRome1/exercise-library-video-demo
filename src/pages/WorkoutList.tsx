@@ -113,7 +113,7 @@ const WorkoutList = () => {
               </p>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 max-w-sm">
           {machines.length === 0 ? <Card className="p-6 text-center bg-background/90 backdrop-blur-sm">
               <p className="text-sm text-muted-foreground mb-3">
                 No machines added yet. Upload a machine photo to get started!

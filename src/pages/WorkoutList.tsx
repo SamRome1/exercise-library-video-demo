@@ -98,10 +98,6 @@ const WorkoutList = () => {
                 <ArrowLeft className="w-4 h-4" />
                 Back to Door
               </Button>
-              <Button variant="default" size="sm" onClick={() => navigate('/')} className="gap-2">
-                <Plus className="w-4 h-4" />
-                Add Machine
-              </Button>
             </div>
 
             <div className="text-left mb-8 mt-24 ml-[6%]">

@@ -57,9 +57,14 @@ const ExerciseList = () => {
           {exercises.map((exercise: Exercise, index: number) => (
             <Card key={index} className="p-3 backdrop-blur-sm bg-[#fef7ea]">
               <div className="mb-2">
-                <h3 className="text-sm font-bold text-slate-950 mb-1">
+                <a
+                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.youtubeSearch)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold text-slate-950 hover:text-primary underline mb-1 block cursor-pointer"
+                >
                   {index + 1}. {exercise.name}
-                </h3>
+                </a>
                 <p className="text-xs text-slate-950 mb-2">
                   {exercise.description}
                 </p>

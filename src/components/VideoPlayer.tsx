@@ -20,9 +20,8 @@ const VideoPlayer = () => {
     setShowUpload(true);
   };
 
-  const handleUpload = (file: File) => {
+  const handleUpload = (file: File, imageData: string) => {
     console.log("Uploaded file:", file.name);
-    // Handle the uploaded file here
   };
 
   return (

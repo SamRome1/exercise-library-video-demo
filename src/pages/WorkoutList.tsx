@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Pencil, Trash2, Plus, ArrowLeft } from "lucide-react";
+import { Pencil, Trash2, Plus, ArrowLeft, Loader2 } from "lucide-react";
 import trainerBg from "@/assets/trainer-background.png";
 interface Machine {
   id: string;
@@ -24,6 +24,7 @@ const WorkoutList = () => {
     notes: ""
   });
   const [workoutGoals, setWorkoutGoals] = useState<Record<string, string>>({});
+  const [loadingMachineId, setLoadingMachineId] = useState<string | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
     fetchMachines();
@@ -77,6 +78,50 @@ const WorkoutList = () => {
     } else {
       toast.success('Machine deleted');
       fetchMachines();
+    }
+  };
+
+  const handleGenerateExercises = async (machine: Machine) => {
+    const workoutGoal = workoutGoals[machine.id];
+    if (!workoutGoal || !workoutGoal.trim()) {
+      toast.error('Please enter what you want to work out');
+      return;
+    }
+
+    setLoadingMachineId(machine.id);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-exercises', {
+        body: {
+          machineName: machine.name,
+          muscles: machine.muscles,
+          workoutGoal: workoutGoal
+        }
+      });
+
+      if (error) {
+        console.error('Error generating exercises:', error);
+        toast.error('Failed to generate exercises');
+        return;
+      }
+
+      if (data.error) {
+        toast.error(data.error);
+        return;
+      }
+
+      // Navigate to exercises page with the data
+      navigate('/exercises', {
+        state: {
+          exercises: data.exercises,
+          machineName: machine.name,
+          workoutGoal: workoutGoal
+        }
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Something went wrong');
+    } finally {
+      setLoadingMachineId(null);
     }
   };
   return <div className="min-h-screen bg-cover bg-center bg-no-repeat relative" style={{
@@ -176,8 +221,20 @@ const WorkoutList = () => {
                     ...workoutGoals,
                     [machine.id]: e.target.value
                   })} placeholder="Enter your workout goal..." className="text-xs h-7 bg-transparent border-black text-black" />
-                      <Button className="mt-1.5 w-full text-[10px] h-6" size="sm">
-                        Gainz
+                      <Button 
+                        onClick={() => handleGenerateExercises(machine)}
+                        disabled={loadingMachineId === machine.id}
+                        className="mt-1.5 w-full text-[10px] h-6" 
+                        size="sm"
+                      >
+                        {loadingMachineId === machine.id ? (
+                          <>
+                            <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                            Generating...
+                          </>
+                        ) : (
+                          'Gainz'
+                        )}
                       </Button>
                     </div>
                   </div>}

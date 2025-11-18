@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import FridgeUpload from "./FridgeUpload";
 
 const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showOverlay, setShowOverlay] = useState(true);
+  const [showUpload, setShowUpload] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
@@ -12,6 +14,15 @@ const VideoPlayer = () => {
       setIsPlaying(true);
       setShowOverlay(false);
     }
+  };
+
+  const handleVideoEnd = () => {
+    setShowUpload(true);
+  };
+
+  const handleUpload = (file: File) => {
+    console.log("Uploaded file:", file.name);
+    // Handle the uploaded file here
   };
 
   return (
@@ -23,6 +34,7 @@ const VideoPlayer = () => {
         src="/door-video.mp4"
         playsInline
         muted
+        onEnded={handleVideoEnd}
       />
 
       {/* Interactive Overlay */}
@@ -47,6 +59,9 @@ const VideoPlayer = () => {
 
       {/* Vignette Effect */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-radial from-transparent via-transparent to-black/40" />
+
+      {/* Fridge Upload Component */}
+      {showUpload && <FridgeUpload onUpload={handleUpload} />}
     </div>
   );
 };

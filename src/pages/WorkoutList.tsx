@@ -97,38 +97,44 @@ const WorkoutList = () => {
       <div className="absolute inset-0 bg-black/70" />
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8 max-w-4xl">
-        <div className="mb-6 flex items-center justify-between">
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => navigate('/')}
-            className="gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Door
-          </Button>
-          <Button
-            variant="default"
-            size="sm"
-            onClick={() => navigate('/')}
-            className="gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Add Machine
-          </Button>
-        </div>
+      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
+        <div className="flex justify-between items-start">
+          {/* Left side - empty for character */}
+          <div className="w-1/2"></div>
+          
+          {/* Right side - content */}
+          <div className="w-1/2 pr-12">
+            <div className="mb-6 flex items-center justify-between">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => navigate('/')}
+                className="gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Door
+              </Button>
+              <Button
+                variant="default"
+                size="sm"
+                onClick={() => navigate('/')}
+                className="gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Add Machine
+              </Button>
+            </div>
 
-        <div className="text-left ml-auto mr-12 max-w-md mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">
-            My Workout Machines
-          </h1>
-          <p className="text-muted-foreground">
-            Track and manage your gym equipment
-          </p>
-        </div>
+            <div className="text-left mb-8">
+              <h1 className="text-4xl font-bold text-foreground mb-2">
+                My Workout Machines
+              </h1>
+              <p className="text-muted-foreground">
+                Track and manage your gym equipment
+              </p>
+            </div>
 
-        <div className="space-y-4">
+            <div className="space-y-4">
           {machines.length === 0 ? (
             <Card className="p-12 text-center bg-background/90 backdrop-blur-sm">
               <p className="text-muted-foreground mb-4">
@@ -229,6 +235,8 @@ const WorkoutList = () => {
               </Card>
             ))
           )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

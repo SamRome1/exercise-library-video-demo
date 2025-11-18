@@ -42,7 +42,7 @@ const VideoPlayer = () => {
         className={cn(
           "absolute inset-0 flex items-center justify-center transition-all duration-1000",
           showOverlay
-            ? "opacity-100 cursor-pointer bg-black/60 backdrop-blur-sm"
+            ? "opacity-100 cursor-pointer"
             : "opacity-0 pointer-events-none"
         )}
       >
@@ -56,8 +56,6 @@ const VideoPlayer = () => {
         </div>
       </div>
 
-      {/* Vignette Effect */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-radial from-transparent via-transparent to-black/40" />
 
       {/* Fridge Upload Component */}
       {showUpload && <FridgeUpload onUpload={handleUpload} />}

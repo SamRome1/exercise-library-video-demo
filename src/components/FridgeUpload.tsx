@@ -58,7 +58,7 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none animate-fade-in">
-      <div className="w-full max-w-xs mx-6 pointer-events-auto" style={{ marginLeft: '-10%' }}>
+      <div className="w-full max-w-xs mx-6 pointer-events-auto" style={{ marginLeft: '-5%' }}>
         <div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}

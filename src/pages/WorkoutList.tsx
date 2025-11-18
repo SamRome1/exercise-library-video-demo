@@ -91,7 +91,7 @@ const WorkoutList = () => {
           
           {/* Right side - content */}
           <div className="w-1/2 pr-12">
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-6 flex items-center justify-center">
               <Button variant="secondary" size="sm" onClick={() => navigate('/')} className="gap-2">
                 <ArrowLeft className="w-4 h-4" />
                 Back to Door

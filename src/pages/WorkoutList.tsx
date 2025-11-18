@@ -105,7 +105,7 @@ const WorkoutList = () => {
             </div>
 
             <div className="text-left mb-8 mt-24">
-              <h1 className="text-4xl font-bold text-foreground mb-2">
+              <h1 className="text-3xl font-bold text-black mb-2">
                 My Workout Machines
               </h1>
             </div>

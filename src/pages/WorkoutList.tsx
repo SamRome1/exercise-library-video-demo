@@ -83,9 +83,6 @@ const WorkoutList = () => {
     backgroundImage: `url(${trainerBg})`,
     backgroundSize: 'contain'
   }}>
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/70" />
-      
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
         <div className="flex justify-between items-start">

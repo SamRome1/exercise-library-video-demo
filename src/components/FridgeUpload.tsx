@@ -1,15 +1,19 @@
 import { useState, useCallback } from "react";
-import { Upload, Image as ImageIcon } from "lucide-react";
+import { Upload, Image as ImageIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 interface FridgeUploadProps {
-  onUpload: (file: File) => void;
+  onUpload: (file: File, imageData: string) => void;
 }
 
 const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const navigate = useNavigate();
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -46,14 +50,48 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
     [onUpload]
   );
 
-  const handleFile = (file: File) => {
+  const handleFile = async (file: File) => {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      setPreview(e.target?.result as string);
+    reader.onload = async (e) => {
+      const imageData = e.target?.result as string;
+      setPreview(imageData);
+      setIsAnalyzing(true);
+
+      try {
+        // Call AI to analyze the machine
+        const { data, error } = await supabase.functions.invoke('analyze-machine', {
+          body: { imageBase64: imageData }
+        });
+
+        if (error) throw error;
+
+        // Save to database
+        const { error: insertError } = await supabase
+          .from('machines')
+          .insert({
+            name: data.name,
+            muscles: data.muscles,
+            image_url: imageData
+          });
+
+        if (insertError) throw insertError;
+
+        toast.success(`${data.name} detected! Added to your workout list.`);
+        
+        // Navigate to workout list after a short delay
+        setTimeout(() => {
+          navigate('/workout-list');
+        }, 1500);
+
+      } catch (error) {
+        console.error('Error analyzing machine:', error);
+        toast.error('Failed to analyze machine. Please try again.');
+      } finally {
+        setIsAnalyzing(false);
+      }
     };
     reader.readAsDataURL(file);
-    onUpload(file);
-    toast.success("Machine photo uploaded!");
+    onUpload(file, '');
   };
 
   return (
@@ -79,7 +117,19 @@ const FridgeUpload = ({ onUpload }: FridgeUploadProps) => {
           />
 
           <div className="p-8 text-center space-y-4">
-            {preview ? (
+            {isAnalyzing ? (
+              <div className="space-y-4">
+                <div className="flex justify-center">
+                  <Loader2 className="w-12 h-12 text-foreground animate-spin" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Analyzing machine...
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  Our AI is identifying the machine and muscle groups
+                </p>
+              </div>
+            ) : preview ? (
               <div className="space-y-4">
                 <img
                   src={preview}

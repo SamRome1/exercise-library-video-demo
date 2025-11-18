@@ -171,7 +171,7 @@ const WorkoutList = () => {
           <video
             ref={videoRef}
             src="/gainz-video.mp4"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             onEnded={handleVideoEnd}
             autoPlay
             playsInline

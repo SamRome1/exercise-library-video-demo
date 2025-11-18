@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,10 @@ const WorkoutList = () => {
   });
   const [workoutGoals, setWorkoutGoals] = useState<Record<string, string>>({});
   const [loadingMachineId, setLoadingMachineId] = useState<string | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
+  const [exercisesReady, setExercisesReady] = useState<any>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
   useEffect(() => {
     fetchMachines();
@@ -89,6 +93,16 @@ const WorkoutList = () => {
     }
 
     setLoadingMachineId(machine.id);
+    setShowVideo(true);
+    setVideoEnded(false);
+    setExercisesReady(null);
+    
+    // Play video
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+
+    // Generate exercises in parallel
     try {
       const { data, error } = await supabase.functions.invoke('generate-exercises', {
         body: {
@@ -101,26 +115,53 @@ const WorkoutList = () => {
       if (error) {
         console.error('Error generating exercises:', error);
         toast.error('Failed to generate exercises');
+        setShowVideo(false);
+        setLoadingMachineId(null);
         return;
       }
 
       if (data.error) {
         toast.error(data.error);
+        setShowVideo(false);
+        setLoadingMachineId(null);
         return;
       }
 
-      // Navigate to exercises page with the data
-      navigate('/exercises', {
-        state: {
-          exercises: data.exercises,
-          machineName: machine.name,
-          workoutGoal: workoutGoal
-        }
+      // Store the results
+      setExercisesReady({
+        exercises: data.exercises,
+        machineName: machine.name,
+        workoutGoal: workoutGoal
       });
+
+      // If video already ended, navigate immediately
+      if (videoEnded) {
+        navigate('/exercises', {
+          state: {
+            exercises: data.exercises,
+            machineName: machine.name,
+            workoutGoal: workoutGoal
+          }
+        });
+        setShowVideo(false);
+        setLoadingMachineId(null);
+      }
     } catch (error) {
       console.error('Error:', error);
       toast.error('Something went wrong');
-    } finally {
+      setShowVideo(false);
+      setLoadingMachineId(null);
+    }
+  };
+
+  const handleVideoEnd = () => {
+    setVideoEnded(true);
+    // If exercises are ready, navigate immediately
+    if (exercisesReady) {
+      navigate('/exercises', {
+        state: exercisesReady
+      });
+      setShowVideo(false);
       setLoadingMachineId(null);
     }
   };
@@ -128,6 +169,18 @@ const WorkoutList = () => {
     backgroundImage: `url(${trainerBg})`,
     backgroundSize: 'contain'
   }}>
+      {showVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <video
+            ref={videoRef}
+            src="/gainz-video.mp4"
+            className="w-full h-full object-cover"
+            onEnded={handleVideoEnd}
+            playsInline
+            muted
+          />
+        </div>
+      )}
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
         <div className="flex justify-between items-start">

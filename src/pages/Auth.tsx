@@ -44,7 +44,7 @@ const Auth = () => {
             toast.error(error.message);
           }
         } else {
-          toast.success('Welcome back!');
+          toast.success('Welcome back User!');
           navigate('/');
         }
       } else {

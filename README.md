@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
-
 ## Project info
 
-**URL**: https://lovable.dev/projects/bc62c4cc-d32d-42a8-a146-2aa41f962e46
+Exercise Library Video Demo
 
-## How can I edit this code?
+This repository provides a simple demo for uploading exercise videos and attaching structured metadata. It is intended as a foundation for building a full exercise library system for fitness apps, coaching platforms, or content management tools.
 
-There are several ways of editing your application.
+## Overview
 
-**Use Lovable**
+The demo includes:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bc62c4cc-d32d-42a8-a146-2aa41f962e46) and start prompting.
+A file upload flow for exercise demonstration videos
 
-Changes made via Lovable will be committed automatically to this repo.
+Metadata definitions for machines, exercises, and muscle applications
 
-**Use your preferred IDE**
+A clean structure for storing exercise descriptions, primary muscles, secondary muscles, and usage notes
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Example data to help extend the system into a full production library
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+This project can serve as a backend reference, a prototype for a coaching platform, or a template for organizing large volumes of exercise footage.
 
-Follow these steps:
+## Features
+Video Upload
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Supports uploading .mp4, .mov, or .webm files and storing them in a structured directory.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Exercise Metadata
 
-# Step 3: Install the necessary dependencies.
-npm i
+Each exercise can include the following fields:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Machine or equipment used
 
-**Edit a file directly in GitHub**
+Primary muscle group
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Secondary muscle groups
 
-**Use GitHub Codespaces**
+Description and setup instructions
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Coaching cues
 
-## What technologies are used for this project?
+Variations
 
-This project is built with:
+Common mistakes
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Machine Usage Reference
 
-## How can I deploy this project?
+## File Structure
+exercise-library-video-demo/
+│
+├── uploads/                # Uploaded exercise videos
+├── data/                   # Exercise metadata (JSON, schema, examples)
+├── src/
+│   ├── upload.js           # Basic upload endpoint or script
+│   ├── metadata.js         # Metadata definitions and helpers
+│   └── components/
+│       └── VideoDisplay/   # Demo UI for viewing exercises
+│
+└── README.md
 
-Simply open [Lovable](https://lovable.dev/projects/bc62c4cc-d32d-42a8-a146-2aa41f962e46) and click on Share -> Publish.
+## Usage
 
-## Can I connect a custom domain to my Lovable project?
+Upload a video file into the uploads/ directory or through the provided upload script.
 
-Yes, you can!
+Create or edit a metadata entry in the data/ folder matching the exercise.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Fork and run on your own server to preview video playback and metadata rendering.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+
+This project is provided for demonstration and educational purposes. Use and modify as needed for your application.
